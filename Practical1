@@ -1,0 +1,85 @@
+#Tempreature
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package server;
+
+import javax.jws.WebService;
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+
+/**
+ *
+ * @author Evelyn DSouza
+ */
+@WebService(serviceName = "Convert")
+public class Convert {
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "FtoC")
+    public String FtoC(@WebParam(name = "a") double a) {
+        //TODO write your implementation code here:
+        return "The Fahrenheit Tempreature "+a+"in celecius is "+((a-32)*5/9);
+
+    }
+}
+______
+
+<%-- 
+    Document   : input
+    Created on : 21 Apr, 2025, 9:49:23 PM
+    Author     : Evelyn DSouza
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+    <form action="output.jsp">
+        Enter Fahrenheit: <input type="text" name="temp" />
+        <input type="submit" value="Convert" />
+    </form>
+
+    </body>
+</html>
+______________
+
+<%-- 
+    Document   : output
+    Created on : 21 Apr, 2025, 9:54:33 PM
+    Author     : Evelyn DSouza
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+    <%-- start web service invocation --%><hr/>
+    <%
+    try {
+	Client.Convert_Service service = new Client.Convert_Service();
+	Client.Convert port = service.getConvertPort();
+	 // TODO initialize WS operation arguments here
+	double a = Double.parseDouble(request.getParameter("temp"));
+	// TODO process result here
+	java.lang.String result = port.ftoC(a);
+	out.println(result);
+    } catch (Exception ex) {
+	// TODO handle custom exceptions here
+    }
+    %>
+    <%-- end web service invocation --%><hr/>
+
+    </body>
+</html>
