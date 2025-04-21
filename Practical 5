@@ -1,0 +1,17 @@
+#Virtualization using KVM
+sudo apt install virt-manager qemu-system
+
+a) if this is difficult then do this:
+
+= > sudo apt install virt-manager qemu-system
+
+b) then open : virtual manager 
+
+c) add connection
+QEMU user session
+
+d) then Right click on QEMU user session created in virtual manager
+
+e) new connection
+
+f) follow the step as we do for virtualiztion Operating system installation
